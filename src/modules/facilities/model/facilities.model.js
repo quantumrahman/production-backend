@@ -1,1 +1,69 @@
-// TODO: FACILITIES MODEL
+import mongoose from 'mongoose';
+
+const facilitySchema = new mongoose.Schema(
+    {
+        name: {
+            type: String,
+            required: [true, 'Name is required'],
+            trim: true,
+        },
+        facility_type: {
+            type: String,
+            required: [true, 'Facility type is required'],
+            enum: [
+                'Football Turf',
+                'Cricket Turf',
+                'Badminton Court',
+                'Tennis Court',
+                'Basketball Court',
+                'Swimming Pool',
+            ],
+        },
+        location: {
+            type: String,
+            required: [true, 'Location is required'],
+            trim: true,
+        },
+        price_per_hour: {
+            type: Number,
+            required: [true, 'Price per hour is required'],
+            min: [0, 'Price per hour cannot be negative or 0'],
+        },
+        capacity: {
+            type: Number,
+            required: [true, 'Capacity is required'],
+            min: [1, 'Capacity must be at least 1 player'],
+        },
+        available_slots: [
+            {
+                type: String,
+                required: [true, 'Available slots are required'],
+            },
+        ],
+        description: {
+            type: String,
+            required: [true, 'Description is required'],
+            trim: true,
+            max: [1000, 'Description cannot be greater than 1000 characters'],
+        },
+        owner_email: {
+            type: String,
+            required: [true, 'Owner email is required'],
+            trim: true,
+            lowercase: true,
+        },
+        facility_image: {
+            type: String,
+            required: [true, 'Facility image is required'],
+            trim: true,
+        },
+    },
+    {
+        timestamps: true,
+        versionKey: false,
+    }
+);
+
+const Facilities = mongoose.model('Facilities', facilitySchema);
+
+export default Facilities;
