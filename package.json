@@ -1,0 +1,28 @@
+{
+    "name": "sportnest-backend",
+    "version": "1.0.0",
+    "description": "sportnest backend development.",
+    "homepage": "https://github.com/quantumrahman/production-backend#readme",
+    "bugs": {
+        "url": "https://github.com/quantumrahman/production-backend/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/quantumrahman/production-backend.git"
+    },
+    "license": "ISC",
+    "author": "Rakibul Rahman",
+    "type": "module",
+    "main": "./src/server.js",
+    "scripts": {
+        "start": "node ./src/server.js",
+        "dev": "nodemon ./src/server.js"
+    },
+    "devDependencies": {
+        "@eslint/js": "^10.0.1",
+        "eslint": "^10.6.0",
+        "globals": "^17.7.0",
+        "nodemon": "^3.1.14",
+        "prettier": "^3.9.1"
+    }
+}
