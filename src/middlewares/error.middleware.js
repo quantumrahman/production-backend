@@ -6,7 +6,7 @@ const errorMiddleware = (err, req, res, next) => {
     let statusCode = err.statusCode || 500;
     let message = err.message || 'Internal server error';
 
-    res.status(statusCode).res.json({
+    res.status(statusCode).json({
         success: false,
         status: statusCode,
         message: message,
