@@ -13,7 +13,9 @@ export const createBooking = async (req, res, next) => {
 
 export const readsBooking = async (req, res, next) => {
     try {
-        return res.status(200).json(new AppResponse(200, 'Booking reads successfully'));
+        const booking = await BookingServices.readBookingsService();
+
+        return res.status(200).json(new AppResponse(200, 'Booking reads successfully', booking));
     } catch (error) {
         return next(error);
     }

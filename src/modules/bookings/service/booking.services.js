@@ -15,8 +15,8 @@ export const createBookingService = async (payload) => {
     return await BookingRepository.createBooking(payload);
 };
 
-export const readsBookingService = async () => {
-    console.log('reads booking service call');
+export const readBookingsService = async () => {
+    return await BookingRepository.readBookings();
 };
 
 export const readBookingService = async () => {
