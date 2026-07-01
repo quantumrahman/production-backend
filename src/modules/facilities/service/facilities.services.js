@@ -38,7 +38,13 @@ export const readFacilityService = async (id) => {
 };
 
 export const updateFacilityService = async (id, payload) => {
-    console.log('update facility service call');
+    const facility = await FacilityRepository.updateFacilityById(id, payload);
+
+    if (!facility) {
+        throw new AppError(404, 'Facility not found');
+    }
+
+    return facility;
 };
 
 export const deleteFacilityService = async (id) => {

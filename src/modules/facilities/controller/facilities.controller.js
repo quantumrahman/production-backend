@@ -35,7 +35,9 @@ export const readFacility = async (req, res, next) => {
 
 export const updateFacility = async (req, res, next) => {
     try {
-        return res.status(200).json(new AppResponse(200, 'Facility update successfully'));
+        const facility = await FacilityService.updateFacilityService(req.params.id, req.body);
+
+        return res.status(200).json(new AppResponse(200, 'Facility update successfully', facility));
     } catch (error) {
         return next(error);
     }
