@@ -13,7 +13,11 @@ export const createFacility = async (req, res, next) => {
 
 export const readsFacility = async (req, res, next) => {
     try {
-        return res.status(200).json(new AppResponse(200, 'Facility reads successfully'));
+        const facilities = await FacilityService.readsFacilityService();
+
+        return res
+            .status(200)
+            .json(new AppResponse(200, 'Facility reads successfully', facilities));
     } catch (error) {
         return next(error);
     }
@@ -21,7 +25,9 @@ export const readsFacility = async (req, res, next) => {
 
 export const readFacility = async (req, res, next) => {
     try {
-        return res.status(200).json(new AppResponse(200, 'Facility read successfully'));
+        const facility = await FacilityService.readFacilityService(req.params.id);
+
+        return res.status(200).json(new AppResponse(200, 'Facility read successfully', facility));
     } catch (error) {
         return next(error);
     }
