@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-
 import * as FacilityRepository from '../repository/facilities.repository.js';
 import AppError from '../../../utils/app.error.js';
 
@@ -48,5 +46,11 @@ export const updateFacilityService = async (id, payload) => {
 };
 
 export const deleteFacilityService = async (id) => {
-    console.log('delete facility service call');
+    const facility = await FacilityRepository.deleteFacilityById(id);
+
+    if (!facility) {
+        throw new AppError(404, 'Facility not found');
+    }
+
+    return facility;
 };

@@ -45,7 +45,9 @@ export const updateFacility = async (req, res, next) => {
 
 export const deleteFacility = async (req, res, next) => {
     try {
-        return res.status(200).json(new AppResponse(200, 'Facility delete successfully'));
+        const facility = await FacilityService.deleteFacilityService(req.params.id);
+
+        return res.status(200).json(new AppResponse(200, 'Facility delete successfully', facility));
     } catch (error) {
         return next(error);
     }
