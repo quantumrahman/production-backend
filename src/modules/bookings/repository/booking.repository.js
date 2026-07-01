@@ -8,6 +8,14 @@ export const readBookings = async () => {
     return await Booking.find().lean();
 };
 
+export const readBookingByField = async (facilityId, bookingDate, timeSlot) => {
+    return await Booking.findOne({
+        facility_id: facilityId,
+        booking_date: bookingDate,
+        time_slot: timeSlot,
+    });
+};
+
 export const readBookingById = async (id) => {
     return await Booking.findById(id).lean();
 };
