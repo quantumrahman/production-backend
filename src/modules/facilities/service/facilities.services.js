@@ -1,10 +1,26 @@
 /* eslint-disable no-unused-vars */
 
-import Facility from '../model/facilities.model.js';
+import * as FacilityRepository from '../repository/facilities.repository.js';
 import AppError from '../../../utils/app.error.js';
 
 export const createFacilityService = async (payload) => {
-    console.log('create facility service call');
+    const facilityExists = await FacilityRepository.readFacilityByName({
+        name: payload.name,
+    });
+
+    if (facilityExists) {
+        throw new AppError(400, 'Facility already exists');
+    }
+
+    const insetData = {
+        ...payload,
+        available_slots: payload.available_slots
+            .split(',')
+            .map((slot) => slot.trim())
+            .filter(Boolean),
+    };
+
+    return await FacilityRepository.createFacility(insetData);
 };
 
 export const readsFacilityService = async () => {

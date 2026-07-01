@@ -8,6 +8,10 @@ export const readFacilities = async () => {
     return await Facility.find().lean();
 };
 
+export const readFacilityByName = async (name) => {
+    return await Facility.findOne(name).lean();
+};
+
 export const readFacilityById = async (id) => {
     return await Facility.findById(id).lean();
 };
